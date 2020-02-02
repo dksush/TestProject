@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="items"
+            type="com.example.testproject.data.response.StoreData" />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{onClick}"
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_store"
+            bindImage="@{items.processed_image}"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@color/cardview_dark_background"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tv_store_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{items.name}"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_store"
+            tools:ignore="MissingConstraints"
+            tools:text="name" />
+
+        <TextView
+            android:id="@+id/tv_store_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
+            android:text="@{items.description}"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_store_title"
+            tools:ignore="MissingConstraints"
+            tools:text="description" />
+
+        <TextView
+            android:id="@+id/tv_isnew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_store_title"
+            app:layout_constraintStart_toEndOf="@+id/tv_store_title"
+            app:layout_constraintTop_toBottomOf="@+id/iv_store"
+            tools:text="new" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
