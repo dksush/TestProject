@@ -41,6 +41,7 @@ fun RecyclerView.setData(items: List<Any>?) {
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 @BindingAdapter("searchData")
 fun RecyclerView.searchData(items: List<Any>?) {
     (this.adapter as? BaseRecyclerAdapter<Any, BaseViewHolder<Any>>)?.run {
