@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="items"
             type="com.example.testproject.data.response.StoreData" />
@@ -12,6 +14,7 @@
         <variable
             name="onClick"
             type="android.view.View.OnClickListener" />
+
 
     </data>
 
@@ -27,7 +30,7 @@
             bindImage="@{items.processed_image}"
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:background="@color/cardview_dark_background"
+            android:scaleType="fitXY"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -61,11 +64,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:visibility="gone"
+            android:text="@string/is_new"
+            android:visibility="@{items._new? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_store_title"
             app:layout_constraintStart_toEndOf="@+id/tv_store_title"
-            app:layout_constraintTop_toBottomOf="@+id/iv_store"
-            tools:text="new" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_store" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

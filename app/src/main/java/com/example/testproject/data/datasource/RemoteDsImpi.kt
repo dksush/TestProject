@@ -23,6 +23,31 @@ class RemoteDsImpi : RemoteDsInterface {
                     call: Call<List<StoreData>>,
                     response: Response<List<StoreData>>
                 ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            success(it)
+                        }
+                    }
+                }
+
+            })
+    }
+
+    override fun getSearchStore(
+        q: String,
+        success: (result: List<StoreData>) -> Unit,
+        fail: (Throwable) -> Unit
+    ) {
+        NetworkUtil.apiService.getSearchStore(q)
+            .enqueue(object :Callback<List<StoreData>>{
+                override fun onFailure(call: Call<List<StoreData>>, t: Throwable) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onResponse(
+                    call: Call<List<StoreData>>,
+                    response: Response<List<StoreData>>
+                ) {
 
                     if (response.isSuccessful) {
                         response.body()?.let {

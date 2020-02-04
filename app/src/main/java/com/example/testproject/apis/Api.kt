@@ -18,4 +18,9 @@ interface Api {
     ): Call<List<StoreData>>
 
 
+
+    @GET("bar_search")
+    fun getSearchStore(
+        @Query("q") q: String
+    ): Call<List<StoreData>>
 }

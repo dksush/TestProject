@@ -16,5 +16,18 @@ class RepoImpi(private val remoteDs: RemoteDsInterface) : RepoInterface {
         )
     }
 
+    override fun getSearchStore(
+        q: String,
+        success: (result: List<StoreData>) -> Unit,
+        fail: (Throwable) -> Unit
+    ) {
+        remoteDs.getSearchStore(
+            q,
+            { success(it) },
+            fail
+        )
+
+    }
+
 
 }

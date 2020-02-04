@@ -1,21 +1,24 @@
-package com.example.testproject
+package com.example.testproject.ui.main
 
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import com.example.testproject.base.BaseRecyclerAdapter
-import com.example.testproject.base.BaseViewHolder
+import com.example.testproject.ui.storedetail.StoreDetailActivity
+import com.example.testproject.ui.base.BaseRecyclerAdapter
+import com.example.testproject.ui.base.BaseViewHolder
 import com.example.testproject.common.StringConst
 import com.example.testproject.data.response.StoreData
 import com.example.testproject.databinding.ItemMainBinding
 
-class MainAdapter : BaseRecyclerAdapter<StoreData, MainAdapter.MainHolder>(DiffCallback()) {
+class MainAdapter(private val itemListener: ItemListener<StoreData>) :
+    BaseRecyclerAdapter<StoreData, MainAdapter.MainHolder>(itemListener,
+        DiffCallback()
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MainHolder(
         ItemMainBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
-
 
     inner class MainHolder(private val binding: ItemMainBinding) :
         BaseViewHolder<StoreData>(binding.root) {
@@ -24,10 +27,12 @@ class MainAdapter : BaseRecyclerAdapter<StoreData, MainAdapter.MainHolder>(DiffC
         init {
             binding.setOnClick {
                 Intent(it.context, StoreDetailActivity::class.java).apply {
+                    putExtra(StringConst.INTENT_KEY_IMAGE_PATH, item.processed_image)
                     putExtra(StringConst.INTENT_KEY_TITLE, item.name)
                     putExtra(StringConst.INTENT_KEY_DESCRIPTION, item.description)
                 }.run { it.context.startActivity(this) }
             }
+
         }
 
         override fun bind(item: StoreData) {
@@ -38,6 +43,7 @@ class MainAdapter : BaseRecyclerAdapter<StoreData, MainAdapter.MainHolder>(DiffC
             }
         }
     }
+
 
 
 }

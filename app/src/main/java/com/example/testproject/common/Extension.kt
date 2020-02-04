@@ -9,8 +9,8 @@ import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.testproject.base.BaseRecyclerAdapter
-import com.example.testproject.base.BaseViewHolder
+import com.example.testproject.ui.base.BaseRecyclerAdapter
+import com.example.testproject.ui.base.BaseViewHolder
 
 
 @SuppressLint("ShowToast")
@@ -37,6 +37,15 @@ fun RecyclerView.setData(items: List<Any>?) {
     (this.adapter as? BaseRecyclerAdapter<Any, BaseViewHolder<Any>>)?.run {
         items?.let {
             setData(items)
+        }
+    }
+}
+
+@BindingAdapter("searchData")
+fun RecyclerView.searchData(items: List<Any>?) {
+    (this.adapter as? BaseRecyclerAdapter<Any, BaseViewHolder<Any>>)?.run {
+        items?.let {
+            searchData(items)
         }
     }
 }

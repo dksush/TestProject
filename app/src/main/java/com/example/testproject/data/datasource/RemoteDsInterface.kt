@@ -10,4 +10,10 @@ interface RemoteDsInterface {
         fail: (Throwable) -> Unit
 
     )
+
+    fun getSearchStore(
+        q : String,
+        success: (result: List<StoreData>) -> Unit,
+        fail: (Throwable) -> Unit
+    )
 }

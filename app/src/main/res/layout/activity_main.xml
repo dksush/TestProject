@@ -9,14 +9,14 @@
 
         <variable
             name="vm"
-            type="com.example.testproject.MainViewModel" />
+            type="com.example.testproject.ui.main.MainViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.main.MainActivity">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,13 +52,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
-                android:orientation="vertical"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="fiset"
+                    android:text="@={vm.inputKeyword}"
                     app:layout_scrollFlags="scroll|enterAlways|snap" />
 
 
@@ -67,6 +66,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycle"
+                searchData="@{vm.searchRenderItem}"
                 setData="@{vm.renderItem}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -76,6 +76,17 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+        <ProgressBar
+            android:id="@+id/loading"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            android:visibility="@{vm.isprogressbar? View.VISIBLE : View.GONE}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
