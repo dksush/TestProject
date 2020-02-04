@@ -14,9 +14,9 @@ class MainViewModel(private val repoImpi: RepoInterface) : ViewModel() {
     val searchRenderItem get() = _searchItem
 
 
-    val emptyList = MutableLiveData<Unit>()
-    var inputKeyword = MutableLiveData<String>()
-    val isprogressbar = MutableLiveData<Boolean>(false)
+    var inputKeyword = MutableLiveData<String>() // 검색 string
+    val emptyList = MutableLiveData<Unit>() // 제휴점 목록 없을경우.
+    val isprogressbar = MutableLiveData<Boolean>(false) // 검색시 프로그래스바.
 
 
     suspend fun requestList(page: Int) {
